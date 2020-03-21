@@ -1,47 +1,42 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import StartView from "./components/StartView";
 import NewGameView from "./components/NewGameView";
-import ContinueView from "./components/ContinueView";
 import ScoreView from "./components/ScoreView";
+import ContinueView from "./components/ContinueView";
 
 export default class App extends Component {
   render() {
+    const Stack = createStackNavigator();
     return (
-      <View style={{ flex: 1, backgroundColor: "yellow" }}>
-        <View
-          style={{
-            flex: 0.44,
-            justifyContent: "center",
-            backgroundColor: "white"
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Start"
+          screenOptions={{
+            title: "7 Wonder duel score",
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "yellow"
+            },
+            headerTintColor: "black",
+            headerTitleStyle: {
+              fontWeight: "bold"
+            }
           }}
-        ></View>
-        <View
-          style={{ flex: 0.7, justifyContent: "center", alignItems: "center" }}
         >
-          <Text style={styles.titleText}>7 Wonder duel Score</Text>
-        </View>
-        <View
-          style={{ flex: 7, justifyContent: "center", backgroundColor: "blue" }}
-        >
-          {/* <StartView /> */}
-          {/* <NewGameView /> */}
-          {/* <ContinueView /> */}
-          <ScoreView />
-        </View>
-      </View>
+          <Stack.Screen name="Start" component={StartView} />
+          <Stack.Screen name="New" component={NewGameView} />
+          <Stack.Screen name="Continue" component={ContinueView} />
+          <Stack.Screen name="Score" component={ScoreView} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  baseText: {
-    fontFamily: "Cochin",
-    marginVertical: 20
-  },
-  titleText: {
-    fontSize: 30,
-    fontWeight: "bold"
-  }
-});
-
+//  <ScoreView />
+//  <NewGameView />
+//  <ContinueView />
+//  <StartView />

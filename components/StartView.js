@@ -1,27 +1,33 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
 
-export default class StartView extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, backgroundColor: "yellow" }}>
-        <View
-          style={{
-            flex: 1.1,
-            justifyContent: "center",
-            backgroundColor: "white"
-          }}
+export default function StartView({ navigation }) {
+  return (
+    <View style={{ flex: 1, backgroundColor: "yellow" }}>
+      <View
+        style={{
+          flex: 7,
+          justifyContent: "center",
+          backgroundColor: "white"
+        }}
+      >
+        <TouchableOpacity
+          style={styles.button}
+          backgroundColor="green"
+          onPress={() => navigation.navigate("Continue")}
         >
-          <TouchableOpacity style={styles.button} backgroundColor="green" onPress={() => null}>
-            <Text style={styles.textButton} > Continue </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} backgroundColor="blue" onPress={() => null}>
-            <Text style={styles.textButton}> New game </Text>
-          </TouchableOpacity>
-        </View>
+          <Text style={styles.textButton}> Continue </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          backgroundColor="blue"
+          onPress={() => navigation.navigate("New")}
+        >
+          <Text style={styles.textButton}> New game </Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -415,7 +415,6 @@ export default class ScoreView extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            backgroundColor="blue"
             onPress={() => null}
           >
             <Text style={styles.textButton}> Restart </Text>
@@ -436,7 +435,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "blue",
+    backgroundColor: "#972a2a",
     padding: 10,
     margin: 10,
     borderRadius: 10

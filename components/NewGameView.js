@@ -1,61 +1,65 @@
 import React, { Component } from "react";
-import { View, TextInput, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 
-export default class NewGameView extends Component {
-  render() {
-    //const [value, onChangeText] = React.useState('Useless Placeholder');
-    return (
-      <View style={{ flex: 1 }}>
-        <View
+export default function NewGameView({ navigation }) {
+  //const [value, onChangeText] = React.useState('Useless Placeholder');
+  return (
+    <View style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 6,
+          backgroundColor: "white",
+          justifyContent: "space-around",
+          alignItems: "center"
+        }}
+      >
+        <Text style={styles.baseText}>Who are playing ?</Text>
+        <TextInput
           style={{
-            flex: 6,
-            backgroundColor: "white",
-            justifyContent: "space-around",
-            alignItems: "center"
+            height: 40,
+            width: 250,
+            borderColor: "gray",
+            borderWidth: 1
           }}
-        >
-          <Text style={styles.baseText}>Who are playing ?</Text>
-          <TextInput
-            style={{
-              height: 40,
-              width: 250,
-              borderColor: "gray",
-              borderWidth: 1
-            }}
-            placeholder=" Player 1"
-            //onChangeText={text => onChangeText(text)}
-            //value={value}
-          />
-          <TextInput
-            style={{
-              height: 40,
-              width: 250,
-              borderColor: "gray",
-              borderWidth: 1
-            }}
-            placeholder=" Player 2"
-            //onChangeText={text => onChangeText(text)}
-            //value={value}
-          />
-        </View>
-        <View
+          placeholder=" Player 1"
+          //onChangeText={text => onChangeText(text)}
+          //value={value}
+        />
+        <TextInput
           style={{
-            flex: 1,
-            justifyContent: "space-around",
-            backgroundColor: "white"
+            height: 40,
+            width: 250,
+            borderColor: "gray",
+            borderWidth: 1
           }}
-        >
-          <TouchableOpacity
-            style={styles.button}
-            backgroundColor="blue"
-            onPress={() => null}
-          >
-            <Text style={styles.textButton}> Start game </Text>
-          </TouchableOpacity>
-        </View>
+          placeholder=" Player 2"
+          //onChangeText={text => onChangeText(text)}
+          //value={value}
+        />
       </View>
-    );
-  }
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "space-around",
+          backgroundColor: "white"
+        }}
+      >
+        <TouchableOpacity
+          style={styles.button}
+          backgroundColor="blue"
+          onPress={() => navigation.navigate("Score")}
+        >
+          <Text style={styles.textButton}> Start game </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
