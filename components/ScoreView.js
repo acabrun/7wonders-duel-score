@@ -17,7 +17,25 @@ export default class ScoreView extends Component {
     super(props);
 
     this.state = {
-      modalVisible: true
+      modalVisible: true,
+      p1v1: "",
+      p1v2: "",
+      p1v3: "",
+      p1v4: "",
+      p1v5: "",
+      p1v6: "",
+      p1v7: "",
+      p1v8: "",
+      p2v1: "",
+      p2v2: "",
+      p2v3: "",
+      p2v4: "",
+      p2v5: "",
+      p2v6: "",
+      p2v7: "",
+      p2v8: "",
+      sumPlayer1: 0,
+      sumPlayer2: 0
     };
   }
 
@@ -25,7 +43,16 @@ export default class ScoreView extends Component {
     this.setState({ modalVisible: visible });
   }
 
+  handleSumPlayer = () => {
+    const { p1v1,p1v2,p1v3,p1v4,p1v5,p1v6,p1v7,p1v8,p2v1,p2v2,p2v3,p2v4,p2v5,p2v6,p2v7,p2v8 } = this.state;
+    this.setState({ sumPlayer1: Number(p1v1)+Number(p1v2)+Number(p1v3)+Number(p1v4)+Number(p1v5)+Number(p1v6)+Number(p1v7)+Number(p1v8) },()=> console.log(this.state.sumPlayer1) )
+    this.setState({ sumPlayer2: Number(p2v1)+Number(p2v2)+Number(p2v3)+Number(p2v4)+Number(p2v5)+Number(p2v6)+Number(p2v7)+Number(p2v8) },()=> console.log(this.state.sumPlayer2) )
+  }
+
   render() {
+    // ------------------------CONSOLE LOG---------------------
+    
+
     const { previousWinner, player1, player2 } = this.props.route.params;
     return (
       <View style={{ flex: 1 }}>
@@ -50,7 +77,7 @@ export default class ScoreView extends Component {
                 <Text
                   style={{ marginBottom: 50, fontSize: 20, fontWeight: "bold" }}
                 >
-                  Previous winner is {previousWinner}
+                  Previous winner was {previousWinner}
                 </Text>
                 <TouchableHighlight
                   style={styles.button}
@@ -129,16 +156,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v1) => this.setState({p1v1})}
+                value={this.state.p1v1}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#b2c0e5" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v1) => this.setState({p2v1})}
+                value={this.state.p2v1}
               />
             </View>
           </View>
@@ -154,16 +181,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v2) => this.setState({p1v2})}
+                value={this.state.p1v2}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#aebc96" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v2) => this.setState({p2v2})}
+                value={this.state.p2v2}
               />
             </View>
           </View>
@@ -179,16 +206,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v3) => this.setState({p1v3})}
+                value={this.state.p1v3}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#e3cfa2" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v3) => this.setState({p2v3})}
+                value={this.state.p2v3}
               />
             </View>
           </View>
@@ -204,16 +231,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v4) => this.setState({p1v4})}
+                value={this.state.p1v4}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#b79cbe" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v4) => this.setState({p2v4})}
+                value={this.state.p2v4}
               />
             </View>
           </View>
@@ -229,16 +256,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v5) => this.setState({p1v5})}
+                value={this.state.p1v5}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#cec4d1" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v5) => this.setState({p2v5})}
+                value={this.state.p2v5}
               />
             </View>
           </View>
@@ -254,16 +281,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v6) => this.setState({p1v6})}
+                value={this.state.p1v6}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#95c29a" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v6) => this.setState({p2v6})}
+                value={this.state.p2v6}
               />
             </View>
           </View>
@@ -279,16 +306,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v7) => this.setState({p1v7})}
+                value={this.state.p1v7}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#dfc6ba" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v7) => this.setState({p2v7})}
+                value={this.state.p2v7}
               />
             </View>
           </View>
@@ -304,16 +331,16 @@ export default class ScoreView extends Component {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p1v8) => this.setState({p1v8})}
+                value={this.state.p1v8}
               />
             </View>
             <View style={{ flex: 3, backgroundColor: "#d398a0" }}>
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                //onChangeText={text => onChangeText(text)}
-                //value={value}
+                onChangeText={(p2v8) => this.setState({p2v8})}
+                value={this.state.p2v8}
               />
             </View>
           </View>
@@ -330,7 +357,9 @@ export default class ScoreView extends Component {
                 flex: 3,
                 backgroundColor: "white",
                 borderColor: "black",
-                borderWidth: 1
+                borderWidth: 1,
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
               <Text
@@ -338,8 +367,7 @@ export default class ScoreView extends Component {
                 //onChangeText={text => onChangeText(text)}
                 //value={value}
               >
-                {" "}
-                Score player 2
+                {this.state.sumPlayer1}
               </Text>
             </View>
             <View
@@ -347,7 +375,9 @@ export default class ScoreView extends Component {
                 flex: 3,
                 backgroundColor: "white",
                 borderColor: "black",
-                borderWidth: 1
+                borderWidth: 1,
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
               <Text
@@ -355,8 +385,7 @@ export default class ScoreView extends Component {
                 //onChangeText={text => onChangeText(text)}
                 //value={value}
               >
-                {" "}
-                Score player 2
+                {this.state.sumPlayer2}
               </Text>
             </View>
           </View>
@@ -461,7 +490,7 @@ export default class ScoreView extends Component {
           <TouchableOpacity
             style={styles.button}
             backgroundColor="blue"
-            onPress={() => null}
+            onPress={this.handleSumPlayer}   
           >
             <Text style={styles.textButton}> Check winner </Text>
           </TouchableOpacity>
@@ -497,6 +526,6 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     borderColor: "black",
-    borderWidth: 1
+    borderWidth: 1,
   }
 });
