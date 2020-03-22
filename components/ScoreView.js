@@ -6,14 +6,64 @@ import {
   StyleSheet,
   TouchableOpacity,
   CheckBox,
-  Image
+  Image,
+  TouchableHighlight,
+  Alert,
+  Modal
 } from "react-native";
 
 export default class ScoreView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modalVisible: true
+    };
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
   render() {
-    //const [value, onChangeText] = React.useState('Useless Placeholder');
+    const { previousWinner, player1, player2 } = this.props.route.params;
     return (
       <View style={{ flex: 1 }}>
+        {/* ---------------------------------------MODAL VIEW-------------------------------------- */}
+        <View>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <View>
+                <Text
+                  style={{ marginBottom: 50, fontSize: 20, fontWeight: "bold" }}
+                >
+                  Previous winner is {previousWinner}
+                </Text>
+                <TouchableHighlight
+                  style={styles.button}
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}
+                >
+                  <Text style={styles.textButton}>Okay !</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
+        </View>
         <View
           style={{
             flex: 6,
@@ -35,7 +85,9 @@ export default class ScoreView extends Component {
                 flex: 3,
                 backgroundColor: "white",
                 borderColor: "black",
-                borderWidth: 1
+                borderWidth: 1,
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
               <Text
@@ -43,8 +95,7 @@ export default class ScoreView extends Component {
                 //onChangeText={text => onChangeText(text)}
                 //value={value}
               >
-                {" "}
-                Player 1
+                 {player1}
               </Text>
             </View>
             <View
@@ -52,7 +103,9 @@ export default class ScoreView extends Component {
                 flex: 3,
                 backgroundColor: "white",
                 borderColor: "black",
-                borderWidth: 1
+                borderWidth: 1,
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
               <Text
@@ -60,8 +113,7 @@ export default class ScoreView extends Component {
                 //onChangeText={text => onChangeText(text)}
                 //value={value}
               >
-                {" "}
-                Player 2
+                {player2}
               </Text>
             </View>
           </View>
@@ -93,7 +145,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE----------------------------------------GREEN CARDS------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#aebc96" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/greenCard.png")}
               />
@@ -118,7 +170,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE------------------------------------------YELLOW CARDS------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#e3cfa2" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/yellowCard.png")}
               />
@@ -143,7 +195,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE----------------------------------------PURPLE CARDS-------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#b79cbe" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/purpleCard.png")}
               />
@@ -168,7 +220,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE------------------------------------WONDERS CARDS--------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#cec4d1" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/wondersCard.png")}
               />
@@ -193,7 +245,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE---------------------------------------SCIENCE ITEM-------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#95c29a" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/scienceItem.png")}
               />
@@ -218,7 +270,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE----------------------------------------COIN--------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#dfc6ba" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/coin.png")}
               />
@@ -243,7 +295,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE------------------------------------MILITARY SCORE--------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#d398a0" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/militaryScore.png")}
               />
@@ -268,7 +320,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE-----------------------------------SUM SCORE-------------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "black" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/sumScore.png")}
               />
@@ -311,7 +363,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE-------------------------------------MILITARY VICTORY------------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#972a2a" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/militaryVictory.png")}
               />
@@ -356,7 +408,7 @@ export default class ScoreView extends Component {
           {/* ------------------ROW SCORE-------------------------------------SCIENCE VICTORY--------------- */}
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1.5, backgroundColor: "#265c3a" }}>
-            <Image
+              <Image
                 style={{ flex: 1, width: undefined, height: undefined }}
                 source={require("../icons/scienceVictory.png")}
               />
@@ -413,10 +465,7 @@ export default class ScoreView extends Component {
           >
             <Text style={styles.textButton}> Check winner </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => null}
-          >
+          <TouchableOpacity style={styles.button} onPress={() => null}>
             <Text style={styles.textButton}> Restart </Text>
           </TouchableOpacity>
         </View>

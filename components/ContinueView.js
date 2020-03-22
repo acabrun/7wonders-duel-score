@@ -1,45 +1,41 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { FAKE_GAME_TAB } from "../helpers/HelpersTab";
 
-export default class ContinueView extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, backgroundColor: "yellow" }}>
-        <View
-          style={{
-            flex: 1.1,
-            backgroundColor: "white"
-          }}
-        >
-          <View alignItems="center">
-            <Text style={styles.baseText}>Choose game !</Text>
-          </View>
+export default function ContinueView({ navigation }) {
+  return (
+    <View style={{ flex: 1, backgroundColor: "yellow" }}>
+      <View
+        style={{
+          flex: 1.1,
+          backgroundColor: "white"
+        }}
+      >
+        <View alignItems="center">
+          <Text style={styles.baseText}>Choose game !</Text>
+        </View>
 
-          <TouchableOpacity
-            style={styles.button}
-            backgroundColor="green"
-            onPress={() => null}
-          >
-            <Text style={styles.textButton}> Antho Vs Aélis </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            backgroundColor="blue"
-            onPress={() => null}
-          >
-            <Text style={styles.textButton}> Antho Vs Hugo </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            backgroundColor="blue"
-            onPress={() => null}
-          >
-            <Text style={styles.textButton}> Aélis Vs Jérem </Text>
-          </TouchableOpacity>
+        <View>
+          {Object.values(FAKE_GAME_TAB).map((game) => (
+            <TouchableOpacity
+              key={game.idMatch}
+              style={styles.button}
+              backgroundColor="green"
+              onPress={() => navigation.navigate("Score", {
+                previousWinner: game.previousWinNameGame,
+                player1: game.player1NameMatch,
+                player2: game.player2NameMatch,
+              } )}
+            >
+              <Text style={styles.textButton}>
+                {game.player1NameMatch} Vs {game.player2NameMatch}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
