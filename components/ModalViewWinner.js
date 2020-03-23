@@ -8,11 +8,11 @@ import {
   Modal
 } from "react-native";
 
-export default class ModalView extends Component {
+export default class ModalViewWinner extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: true
+      modalVisible: null
     };
   }
 
@@ -26,7 +26,7 @@ export default class ModalView extends Component {
         <Modal
           animationType="slide"
           transparent={false}
-          visible={this.state.modalVisible}
+          visible={this.props.visible}
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
           }}
@@ -42,7 +42,7 @@ export default class ModalView extends Component {
               <Text
                 style={{ marginBottom: 50, fontSize: 20, fontWeight: "bold" }}
               >
-                Previous winner was {this.props.previousWinner}
+                {""} win !
               </Text>
               <TouchableHighlight
                 style={styles.button}
@@ -51,6 +51,12 @@ export default class ModalView extends Component {
                 }}
               >
                 <Text style={styles.textButton}>Okay !</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={null}
+              >
+                <Text style={styles.textButton}>Save</Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -70,13 +76,13 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#e3cfad",
+    backgroundColor: "#972a2a",
     padding: 10,
     margin: 10,
     borderRadius: 10
   },
   textButton: {
-    color: "black",
+    color: "white",
     fontSize: 16,
     fontWeight: "bold"
   },

@@ -9,6 +9,7 @@ import {
   Image,
 } from "react-native";
 import ModalView from "./ModalView";
+import ModalViewWinner from "./ModalViewWinner";
 
 export default class ScoreView extends Component {
   constructor(props) {
@@ -33,7 +34,8 @@ export default class ScoreView extends Component {
       p2v7: "",
       p2v8: "",
       sumPlayer1: 0,
-      sumPlayer2: 0
+      sumPlayer2: 0,
+      displayWinner: false
     };
   }
 
@@ -84,6 +86,9 @@ export default class ScoreView extends Component {
       },
       () => console.log(this.state.sumPlayer2)
     );
+    this.setState({ displayWinner: true }, () =>
+      console.log(this.state.displayWinner)
+    );
   };
 
   render() {
@@ -93,12 +98,15 @@ export default class ScoreView extends Component {
       <View style={{ flex: 1 }}>
         {/* ---------------------------------------MODAL VIEW-------------------------------------- */}
         <ModalView previousWinner={previousWinner} />
+        <ModalViewWinner visible={this.state.displayWinner} />
         <View
           style={{
             flex: 6,
             backgroundColor: "white",
             // justifyContent: "space-around",
-            alignItems: "stretch"
+            alignItems: "stretch",
+            marginBottom: 5,
+            marginTop: 10
           }}
         >
           {/* ------------------ROW SCORE-------------------------------------------PLAYER----- */}
@@ -515,13 +523,13 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#972a2a",
+    backgroundColor: "#e3cfad",
     padding: 10,
     margin: 10,
     borderRadius: 10
   },
   textButton: {
-    color: "white",
+    color: "black",
     fontSize: 16,
     fontWeight: "bold"
   },

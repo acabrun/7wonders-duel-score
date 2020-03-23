@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import StartView from "./components/StartView";
@@ -9,6 +10,11 @@ import ContinueView from "./components/ContinueView";
 import NewScoreView from "./components/NewScoreView";
 
 export default class App extends Component {
+
+  componentDidMount() {
+    StatusBar.setHidden(true);
+  }
+
   render() {
     const Stack = createStackNavigator();
     return (
@@ -19,7 +25,7 @@ export default class App extends Component {
             title: "7 Wonder duel score",
             headerTitleAlign: "center",
             headerStyle: {
-              backgroundColor: "yellow"
+              backgroundColor: "#e3cfad"
             },
             headerTintColor: "black",
             headerTitleStyle: {

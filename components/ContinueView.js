@@ -40,7 +40,7 @@ export default function ContinueView({ navigation }) {
 
 const styles = StyleSheet.create({
   textButton: {
-    color: "white",
+    color: "black",
     fontSize: 16,
     fontWeight: "bold"
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "grey",
+    backgroundColor: "#e3cfad",
     padding: 10,
     margin: 10,
     borderRadius: 10
