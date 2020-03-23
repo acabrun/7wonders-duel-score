@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   CheckBox,
   Image,
+  TouchableHighlight,
+  Alert,
+  Modal
 } from "react-native";
 import ModalView from "./ModalView";
 
@@ -87,12 +90,11 @@ export default class ScoreView extends Component {
   };
 
   render() {
-    const { previousWinner, player1, player2 } = this.props.route.params;
-
+    const { player1, player2 } = this.props.route.params;
+    
     return (
       <View style={{ flex: 1 }}>
         {/* ---------------------------------------MODAL VIEW-------------------------------------- */}
-        <ModalView previousWinner={previousWinner} />
         <View
           style={{
             flex: 6,
