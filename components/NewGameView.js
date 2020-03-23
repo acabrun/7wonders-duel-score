@@ -4,7 +4,8 @@ import {
   TextInput,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from "react-native";
 
 export default class NewGameView extends Component {
@@ -12,12 +13,14 @@ export default class NewGameView extends Component {
     super(props);
     this.state = {
       p1: "",
-      p2: ""
+      p2: "",
+      textFilled: true
     };
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      // Component who move up textInput when keyboard is active
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <View
           style={{
             flex: 6,
@@ -28,23 +31,13 @@ export default class NewGameView extends Component {
         >
           <Text style={styles.baseText}>Who are playing ?</Text>
           <TextInput
-            style={{
-              height: 40,
-              width: 250,
-              borderColor: "gray",
-              borderWidth: 1
-            }}
+            style={this.state.textFilled ? styles.textInput : styles.textInputNotFilled }
             placeholder=" Player 1"
             onChangeText={p1 => this.setState({ p1 })}
             value={this.state.p1}
           />
           <TextInput
-            style={{
-              height: 40,
-              width: 250,
-              borderColor: "gray",
-              borderWidth: 1
-            }}
+            style={this.state.textFilled ? styles.textInput : styles.textInputNotFilled }
             placeholder=" Player 2"
             onChangeText={p2 => this.setState({ p2 })}
             value={this.state.p2}
@@ -60,17 +53,22 @@ export default class NewGameView extends Component {
           <TouchableOpacity
             style={styles.button}
             backgroundColor="blue"
-            onPress={() =>
-              this.props.navigation.navigate("NewScore", {
-                player1: this.state.p1,
-                player2: this.state.p2
-              })
-            }
+            onPress={() => {
+              if (this.state.p1.trim() === "" || this.state.p2.trim() === "") {
+                this.setState({ textFilled : false })
+              } else {
+                this.setState({ textFilled : true })
+                this.props.navigation.navigate("NewScore", {
+                  player1: this.state.p1,
+                  player2: this.state.p2
+                });
+              }
+            }}
           >
             <Text style={styles.textButton}> Start game </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -94,5 +92,19 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold"
+  },
+  textInput: {
+    height: 40,
+    width: 250,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 5
+  },
+  textInputNotFilled: {
+    height: 40,
+    width: 250,
+    borderColor: "red",
+    borderWidth: 1,
+    borderRadius: 5
   }
 });
