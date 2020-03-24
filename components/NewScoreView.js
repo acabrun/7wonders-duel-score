@@ -7,18 +7,14 @@ import {
   TouchableOpacity,
   CheckBox,
   Image,
-  TouchableHighlight,
-  Alert,
-  Modal
 } from "react-native";
-import ModalView from "./ModalView";
+import ModalViewWinner from "./ModalViewWinner";
 
 export default class ScoreView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalVisible: true,
       p1v1: "",
       p1v2: "",
       p1v3: "",
@@ -36,7 +32,9 @@ export default class ScoreView extends Component {
       p2v7: "",
       p2v8: "",
       sumPlayer1: 0,
-      sumPlayer2: 0
+      sumPlayer2: 0,
+      displayWinner: false,
+      winner: ""
     };
   }
 
@@ -87,7 +85,22 @@ export default class ScoreView extends Component {
       },
       () => console.log(this.state.sumPlayer2)
     );
+    this.handleModal();
+    
   };
+
+  handleModal = () => {
+    this.setState({ displayWinner: true }, ()=> this.checkWinner() );
+  };
+
+  handleOnHide = () => {
+    this.setState({ displayWinner: false });
+  }
+
+  checkWinner = () => {
+    if(this.state.sumPlayer1 > this.state.sumPlayer2) this.setState({ winner: this.props.route.params.player1 })
+    else if(this.state.sumPlayer1 < this.state.sumPlayer2) this.setState({ winner: this.props.route.params.player2 })
+  }
 
   render() {
     const { player1, player2 } = this.props.route.params;
@@ -95,12 +108,20 @@ export default class ScoreView extends Component {
     return (
       <View style={{ flex: 1 }}>
         {/* ---------------------------------------MODAL VIEW-------------------------------------- */}
+        {this.state.displayWinner === true ? (
+          <ModalViewWinner
+            winner={this.state.winner}
+            show={this.state.displayWinner}
+            onHide={() => this.handleOnHide()}
+          />
+        ) : null}
         <View
           style={{
             flex: 6,
             backgroundColor: "white",
-            // justifyContent: "space-around",
-            alignItems: "stretch"
+            alignItems: "stretch",
+            marginTop: 10,
+            marginBottom: 5
           }}
         >
           {/* ------------------ROW SCORE-------------------------------------------PLAYER----- */}
@@ -517,13 +538,13 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#972a2a",
+    backgroundColor: "#e3cfad",
     padding: 10,
     margin: 10,
     borderRadius: 10
   },
   textButton: {
-    color: "white",
+    color: "black",
     fontSize: 16,
     fontWeight: "bold"
   },

@@ -12,12 +12,11 @@ export default class ModalViewWinner extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: null
     };
   }
 
-  setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+  handleHide() {
+    this.props.onHide(false);
   }
 
   render() {
@@ -26,7 +25,7 @@ export default class ModalViewWinner extends Component {
         <Modal
           animationType="slide"
           transparent={false}
-          visible={this.props.visible}
+          visible={true}
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
           }}
@@ -42,13 +41,11 @@ export default class ModalViewWinner extends Component {
               <Text
                 style={{ marginBottom: 50, fontSize: 20, fontWeight: "bold" }}
               >
-                {""} win !
+                {this.props.winner} win !
               </Text>
               <TouchableHighlight
                 style={styles.button}
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}
+                onPress={() => this.handleHide()}
               >
                 <Text style={styles.textButton}>Okay !</Text>
               </TouchableHighlight>
@@ -76,13 +73,13 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#972a2a",
+    backgroundColor: "#e3cfad",
     padding: 10,
     margin: 10,
     borderRadius: 10
   },
   textButton: {
-    color: "white",
+    color: "black",
     fontSize: 16,
     fontWeight: "bold"
   },
