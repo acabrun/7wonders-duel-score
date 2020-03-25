@@ -103,7 +103,7 @@ export default class ScoreView extends Component {
   }
 
   render() {
-    const { previousWinner, player1, player2 } = this.props.route.params;
+    const { previousWinner, player1, player2, idMatch } = this.props.route.params;
 
     return (
       <View style={{ flex: 1 }}>
@@ -111,6 +111,8 @@ export default class ScoreView extends Component {
         <ModalView previousWinner={previousWinner} />
         {this.state.displayWinner === true ? (
           <ModalViewWinner
+            idMatch={idMatch}
+            score={[this.state.sumPlayer1,this.state.sumPlayer2]}
             winner={this.state.winner}
             show={this.state.displayWinner}
             onHide={() => this.handleOnHide()}

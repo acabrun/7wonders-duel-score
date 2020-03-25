@@ -25,6 +25,7 @@ export default function ContinueView({ navigation }) {
                 previousWinner: game.previousWinNameGame,
                 player1: game.player1NameMatch,
                 player2: game.player2NameMatch,
+                idMatch: game.idMatch
               } )}
             >
               <Text style={styles.textButton}>

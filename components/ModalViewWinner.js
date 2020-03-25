@@ -7,16 +7,34 @@ import {
   Alert,
   Modal
 } from "react-native";
+import { connect } from "react-redux";
 
-export default class ModalViewWinner extends Component {
+class ModalViewWinner extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   handleHide() {
     this.props.onHide(false);
+  }
+
+  _saveGame() {
+    const paramsMatch = [
+      {
+        idGame: this.props.idMatch + 1,
+        dateGame: "2020-02-15",
+        scoreGame: this.props.score,
+        winNameGame: this.props.winner
+      }
+    ]
+
+    const action = { type: "ADD_GAME", value: paramsMatch }  // to do: gameParams like "this.state.gameParams"
+    this.props.dispatch(action)
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.gameSaved)
   }
 
   render() {
@@ -49,10 +67,7 @@ export default class ModalViewWinner extends Component {
               >
                 <Text style={styles.textButton}>Okay !</Text>
               </TouchableHighlight>
-              <TouchableHighlight
-                style={styles.button}
-                onPress={null}
-              >
+              <TouchableHighlight style={styles.button} onPress={() => this._saveGame()}>
                 <Text style={styles.textButton}>Save</Text>
               </TouchableHighlight>
             </View>
@@ -89,3 +104,10 @@ const styles = StyleSheet.create({
     borderWidth: 1
   }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    gameSaved: state.gameSaved
+  }
+}
+export default connect(mapStateToProps)(ModalViewWinner)
