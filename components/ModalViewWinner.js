@@ -8,6 +8,7 @@ import {
   Modal
 } from "react-native";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class ModalViewWinner extends Component {
   constructor(props) {
@@ -20,21 +21,24 @@ class ModalViewWinner extends Component {
   }
 
   _saveGame() {
-    const paramsMatch = [
-      {
-        idGame: this.props.idMatch + 1,
-        dateGame: "2020-02-15",
+    const GAME_TAB = {
+      idMatch: this.props.idMatch,
+      player1NameMatch: this.props.player1,
+      player2NameMatch: this.props.player2,
+      paramsMatch: {
+        idGame: this.props.idGame,
+        dateGame: moment().format("DD-MM-YYYY"),
         scoreGame: this.props.score,
         winNameGame: this.props.winner
       }
-    ]
+    };
 
-    const action = { type: "ADD_GAME", value: paramsMatch }  // to do: gameParams like "this.state.gameParams"
-    this.props.dispatch(action)
+    const action = { type: "ADD_GAME", value: GAME_TAB };
+    this.props.dispatch(action);
   }
 
   componentDidUpdate() {
-    console.log(this.props.gameSaved)
+    console.log(this.props.gameSaved);
   }
 
   render() {
@@ -67,7 +71,10 @@ class ModalViewWinner extends Component {
               >
                 <Text style={styles.textButton}>Okay !</Text>
               </TouchableHighlight>
-              <TouchableHighlight style={styles.button} onPress={() => this._saveGame()}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this._saveGame()}
+              >
                 <Text style={styles.textButton}>Save</Text>
               </TouchableHighlight>
             </View>
@@ -105,9 +112,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     gameSaved: state.gameSaved
-  }
-}
-export default connect(mapStateToProps)(ModalViewWinner)
+  };
+};
+export default connect(mapStateToProps)(ModalViewWinner);

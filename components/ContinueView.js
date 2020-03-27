@@ -22,7 +22,7 @@ export default function ContinueView({ navigation }) {
               style={styles.button}
               backgroundColor="green"
               onPress={() => navigation.navigate("Score", {
-                previousWinner: game.previousWinNameGame,
+                paramsMatch: game.paramsMatch,
                 player1: game.player1NameMatch,
                 player2: game.player2NameMatch,
                 idMatch: game.idMatch

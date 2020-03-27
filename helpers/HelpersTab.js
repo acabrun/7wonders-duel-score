@@ -3,7 +3,6 @@ export const FAKE_GAME_TAB = [
     idMatch: 1,
     player1NameMatch: "Antho",
     player2NameMatch: "Aélis",
-    previousWinNameGame: "Aélis",
     paramsMatch: [
       {
         idGame: 1,
@@ -29,7 +28,6 @@ export const FAKE_GAME_TAB = [
     idMatch: 2,
     player1NameMatch: "Antho",
     player2NameMatch: "Hugo",
-    previousWinNameGame: "Antho",
     paramsMatch: [
       {
         idGame: 1,
@@ -49,7 +47,6 @@ export const FAKE_GAME_TAB = [
     idMatch: 3,
     player1NameMatch: "Aélis",
     player2NameMatch: "Jérem",
-    previousWinNameGame: "Jérem",
     paramsMatch: [
       {
         idGame: 1,
