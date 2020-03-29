@@ -90,7 +90,7 @@ export default class ScoreView extends Component {
   };
 
   handleModal = () => {
-    this.setState({ displayWinner: true }, ()=> this.checkWinner() );
+    this.setState({ displayWinner: true }, () => this.checkWinner());
   };
 
   handleOnHide() {
@@ -98,27 +98,49 @@ export default class ScoreView extends Component {
   }
 
   checkWinner = () => {
-    if(this.state.sumPlayer1 > this.state.sumPlayer2) this.setState({ winner: this.props.route.params.player1 })
-    else if(this.state.sumPlayer1 < this.state.sumPlayer2) this.setState({ winner: this.props.route.params.player2 })
-  }
+    if (this.state.sumPlayer1 > this.state.sumPlayer2)
+      this.setState({ winner: this.props.route.params.player1 });
+    else if (this.state.sumPlayer1 < this.state.sumPlayer2)
+      this.setState({ winner: this.props.route.params.player2 });
+  };
+
+  handleRestart = () => {
+    // Redirect to continueView
+  };
 
   render() {
-    const { paramsMatch, player1, player2, idMatch } = this.props.route.params;
+    const {
+      paramsMatch,
+      player1,
+      player2,
+      idMatch,
+      isNewGame
+    } = this.props.route.params;
 
     //Object(paramsMatch).map(item => console.log(item)) paramsMatch.length
-    console.log()
+    console.log();
 
     return (
       <View style={{ flex: 1 }}>
         {/* ---------------------------------------MODAL VIEW-------------------------------------- */}
-        <ModalView previousWinner={paramsMatch[paramsMatch.length-1].winNameGame} />
+        {isNewGame ? null : (
+          <ModalView
+            previousWinner={
+              typeof paramsMatch === "Array"
+                ? paramsMatch[paramsMatch.length - 1].winNameGame
+                : paramsMatch.winNameGame
+            }
+          />
+        )}
+
+        {/* ---------------------------------MODAL VIEW WINNER---------------------------------- */}
         {this.state.displayWinner === true ? (
           <ModalViewWinner
             idMatch={idMatch}
-            idGame={paramsMatch.length}
+            idGame={this.state.idGame}
             player1={player1}
             player2={player2}
-            score={[this.state.sumPlayer1,this.state.sumPlayer2]}
+            score={[this.state.sumPlayer1, this.state.sumPlayer2]}
             winner={this.state.winner}
             show={this.state.displayWinner}
             onHide={() => this.handleOnHide()}
@@ -529,7 +551,7 @@ export default class ScoreView extends Component {
           >
             <Text style={styles.textButton}> Check winner </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => null}>
+          <TouchableOpacity style={styles.button} onPress={this.handleRestart}>
             <Text style={styles.textButton}> Restart </Text>
           </TouchableOpacity>
         </View>

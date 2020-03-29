@@ -2,41 +2,65 @@ import React, { Component } from "react";
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
 import { FAKE_GAME_TAB } from "../helpers/HelpersTab";
 
-export default function ContinueView({ navigation }) {
-  return (
-    <View style={{ flex: 1, backgroundColor: "yellow" }}>
-      <View
-        style={{
-          flex: 1.1,
-          backgroundColor: "white"
-        }}
-      >
-        <View alignItems="center">
-          <Text style={styles.baseText}>Choose game !</Text>
-        </View>
+import { connect } from "react-redux";
 
-        <View>
-          {Object.values(FAKE_GAME_TAB).map((game) => (
-            <TouchableOpacity
-              key={game.idMatch}
-              style={styles.button}
-              backgroundColor="green"
-              onPress={() => navigation.navigate("Score", {
-                paramsMatch: game.paramsMatch,
-                player1: game.player1NameMatch,
-                player2: game.player2NameMatch,
-                idMatch: game.idMatch
-              } )}
-            >
-              <Text style={styles.textButton}>
-                {game.player1NameMatch} Vs {game.player2NameMatch}
-              </Text>
-            </TouchableOpacity>
-          ))}
+class ContinueView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidUpdate() {
+    // console.log(this.props)
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1, backgroundColor: "yellow" }}>
+        {/* LOG */}
+        {console.log(this.props.gameSaved)}
+        <View
+          style={{
+            flex: 1.1,
+            backgroundColor: "white"
+          }}
+        >
+          <View alignItems="center">
+            {this.props.gameSaved.join() === [].join() ? (
+              <Text style={styles.baseText}>No game find !</Text>
+            ) : (
+              <Text style={styles.baseText}>Choose game !</Text>
+            )}
+          </View>
+
+          <View>
+            {this.props.gameSaved
+              ? Object.values(this.props.gameSaved).map(game => (
+                  <TouchableOpacity
+                    key={game.idMatch}
+                    style={styles.button}
+                    backgroundColor="green"
+                    onPress={() =>
+                      this.props.navigation.navigate("Score", {
+                        paramsMatch: game.paramsMatch,
+                        player1: game.player1NameMatch,
+                        player2: game.player2NameMatch,
+                        idMatch: game.idMatch,
+                        isNewGame: false
+                      })
+                    }
+                  >
+                    <Text style={styles.textButton}>
+                      {game.player1NameMatch} Vs {game.player2NameMatch}
+                    </Text>
+                  </TouchableOpacity>
+                ))
+              : null}
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -58,3 +82,10 @@ const styles = StyleSheet.create({
     borderRadius: 10
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    gameSaved: state.gameSaved
+  };
+};
+export default connect(mapStateToProps)(ContinueView);

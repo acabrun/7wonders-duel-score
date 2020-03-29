@@ -20,9 +20,9 @@ class ModalViewWinner extends Component {
     this.props.onHide(false);
   }
 
-  _saveGame() {
+  _saveGame = () => {
     const GAME_TAB = {
-      idMatch: this.props.idMatch,
+      idMatch: this.state.idMatch,
       player1NameMatch: this.props.player1,
       player2NameMatch: this.props.player2,
       paramsMatch: {
@@ -35,7 +35,24 @@ class ModalViewWinner extends Component {
 
     const action = { type: "ADD_GAME", value: GAME_TAB };
     this.props.dispatch(action);
-  }
+  };
+
+  _setIdMatch = () => {
+    this.props.idMatch
+      ? this.setState({ idMatch: this.props.idMatch }, () => this._saveGame())
+      : console.log("|New Match|");
+    if (this.props.gameSaved.join() === [].join())
+      this.setState({ idMatch: 1 }, () => this._saveGame());
+    else {
+      this.setState(
+        {
+          idMatch:
+            this.props.gameSaved[this.props.gameSaved.length - 1].idMatch + 1
+        },
+        () => this._saveGame()
+      );
+    }
+  };
 
   componentDidUpdate() {
     console.log(this.props.gameSaved);
@@ -73,7 +90,7 @@ class ModalViewWinner extends Component {
               </TouchableHighlight>
               <TouchableHighlight
                 style={styles.button}
-                onPress={() => this._saveGame()}
+                onPress={() => this._setIdMatch()}
               >
                 <Text style={styles.textButton}>Save</Text>
               </TouchableHighlight>

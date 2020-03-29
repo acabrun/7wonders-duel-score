@@ -1,9 +1,11 @@
+// TODO : Save new game IN match if it already exist !!!!!
+
+
 const initialState = { gameSaved: [] };
 
 function saveGame(state = initialState, action) {
   let nextState;
   let itemMatch;
-  let itemGame;
   switch (action.type) {
     case "ADD_GAME":
       const matchSavedIndex = state.gameSaved.findIndex(

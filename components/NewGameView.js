@@ -8,15 +8,22 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 
-export default class NewGameView extends Component {
+
+class NewGameView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       p1: "",
       p2: "",
-      textFilled: true
+      textFilled: true,
     };
   }
+
+
+
+  componentDidMount() {
+  }
+
   render() {
     return (
       // Component who move up textInput when keyboard is active
@@ -58,9 +65,10 @@ export default class NewGameView extends Component {
                 this.setState({ textFilled : false })
               } else {
                 this.setState({ textFilled : true })
-                this.props.navigation.navigate("NewScore", {
+                this.props.navigation.navigate("Score", {
                   player1: this.state.p1,
-                  player2: this.state.p2
+                  player2: this.state.p2,
+                  isNewGame: true
                 });
               }
             }}
@@ -108,3 +116,6 @@ const styles = StyleSheet.create({
     borderRadius: 5
   }
 });
+
+
+export default NewGameView
