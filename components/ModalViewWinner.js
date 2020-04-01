@@ -13,7 +13,9 @@ import moment from "moment";
 class ModalViewWinner extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isSaved: false
+    };
   }
 
   handleHide() {
@@ -26,7 +28,7 @@ class ModalViewWinner extends Component {
       player1NameMatch: this.props.player1,
       player2NameMatch: this.props.player2,
       paramsMatch: {
-        idGame: this.props.idGame,
+        idGame: this.state.idGame,
         dateGame: moment().format("DD-MM-YYYY"),
         scoreGame: this.props.score,
         winNameGame: this.props.winner
@@ -38,21 +40,52 @@ class ModalViewWinner extends Component {
   };
 
   _setIdMatch = () => {
-    this.props.idMatch
-      ? this.setState({ idMatch: this.props.idMatch }, () => this._saveGame())
-      : console.log("|New Match|");
-    if (this.props.gameSaved.join() === [].join())
-      this.setState({ idMatch: 1 }, () => this._saveGame());
-    else {
-      this.setState(
-        {
-          idMatch:
-            this.props.gameSaved[this.props.gameSaved.length - 1].idMatch + 1
-        },
-        () => this._saveGame()
-      );
+    // Continue existing match
+    if (this.props.idMatch) {
+      this._setIdGame();
+      this.setState({ idMatch: this.props.idMatch }, () => this._saveGame());
+    }
+    else { // Create new match
+      // First match 
+      if (this.props.gameSaved.join() === [].join()) {
+        this._setIdGame();
+        this.setState({ idMatch: 1 }, () => this._saveGame());
+        this.setState({ isSaved: true })
+      }
+      // Another match exist
+      else if(!this.state.isSaved) { 
+        this._setIdGame();
+        this.setState(
+          {
+            idMatch:
+              this.props.gameSaved[this.props.gameSaved.length - 1].idMatch + 1
+          },
+          () => this._saveGame()
+        );
+      }
+      else return
     }
   };
+
+  _setIdGame = () => {
+    // Continue match and add game
+    if (this.props.idGame)
+      this.setState({ idGame: this.props.idGame + 1 });
+    // Create new match
+    else {
+      // First match
+      if (this.props.gameSaved.join() === [].join()) {
+        console.log('First game')
+        this.setState({ idGame: 1 });
+      }
+      // Another match exist 
+      else {
+        if (typeof(this.props.gameSaved[this.state.idMatch-1].paramsMatch) === "Object") {
+          console.log('Object')
+        }
+      }
+    }
+  }
 
   componentDidUpdate() {
     console.log(this.props.gameSaved);

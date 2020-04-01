@@ -23,10 +23,10 @@ function saveGame(state = initialState, action) {
           console.log('Game already exist');
         } else {
           // Save new game
-          console.log('New game saved');
+          console.log('New game saved || ' + state.gameSaved[matchSavedIndex].paramsMatch[0] + ' || ' + action.value.paramsMatch[0] ) ;
           nextState = {
             ...state,
-            gameSaved: [...state.gameSaved[matchSavedIndex].paramsMatch, action.value.paramsMatch] // concatenation
+            gameSaved: [...state.gameSaved[matchSavedIndex].paramsMatch, action.value.paramsMatch] // <-----------------TODO !!!!!-------------
           };
           
         }

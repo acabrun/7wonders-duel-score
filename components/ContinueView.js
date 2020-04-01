@@ -10,15 +10,12 @@ class ContinueView extends Component {
     this.state = {};
   }
 
-  componentDidUpdate() {
-    // console.log(this.props)
-  }
+  componentDidUpdate() {}
 
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: "yellow" }}>
         {/* LOG */}
-        {console.log(this.props.gameSaved)}
         <View
           style={{
             flex: 1.1,
@@ -27,7 +24,7 @@ class ContinueView extends Component {
         >
           <View alignItems="center">
             {this.props.gameSaved.join() === [].join() ? (
-              <Text style={styles.baseText}>No game find !</Text>
+              <Text style={styles.baseText}>No game found !</Text>
             ) : (
               <Text style={styles.baseText}>Choose game !</Text>
             )}
@@ -40,15 +37,16 @@ class ContinueView extends Component {
                     key={game.idMatch}
                     style={styles.button}
                     backgroundColor="green"
-                    onPress={() =>
+                    onPress={() => {
                       this.props.navigation.navigate("Score", {
                         paramsMatch: game.paramsMatch,
                         player1: game.player1NameMatch,
                         player2: game.player2NameMatch,
                         idMatch: game.idMatch,
+                        idGame: game.paramsMatch.idGame,
                         isNewGame: false
-                      })
-                    }
+                      });
+                    }}
                   >
                     <Text style={styles.textButton}>
                       {game.player1NameMatch} Vs {game.player2NameMatch}

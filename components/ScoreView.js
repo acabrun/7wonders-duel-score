@@ -108,17 +108,19 @@ export default class ScoreView extends Component {
     // Redirect to continueView
   };
 
+ 
+
   render() {
     const {
       paramsMatch,
       player1,
       player2,
       idMatch,
+      idGame,
       isNewGame
     } = this.props.route.params;
 
     //Object(paramsMatch).map(item => console.log(item)) paramsMatch.length
-    console.log();
 
     return (
       <View style={{ flex: 1 }}>
@@ -137,7 +139,7 @@ export default class ScoreView extends Component {
         {this.state.displayWinner === true ? (
           <ModalViewWinner
             idMatch={idMatch}
-            idGame={this.state.idGame}
+            idGame={idGame}  
             player1={player1}
             player2={player2}
             score={[this.state.sumPlayer1, this.state.sumPlayer2]}
