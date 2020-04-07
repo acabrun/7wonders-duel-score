@@ -116,8 +116,8 @@ export default class ScoreView extends Component {
       player1,
       player2,
       idMatch,
-      idGame,
-      isNewGame
+     // idGame,
+      isNewMatch
     } = this.props.route.params;
 
     //Object(paramsMatch).map(item => console.log(item)) paramsMatch.length
@@ -125,13 +125,9 @@ export default class ScoreView extends Component {
     return (
       <View style={{ flex: 1 }}>
         {/* ---------------------------------------MODAL VIEW-------------------------------------- */}
-        {isNewGame ? null : (
+        {isNewMatch ? null : (
           <ModalView
-            previousWinner={
-              typeof paramsMatch === "Array"
-                ? paramsMatch[paramsMatch.length - 1].winNameGame
-                : paramsMatch.winNameGame
-            }
+            previousWinner={paramsMatch[paramsMatch.length - 1].winNameGame}
           />
         )}
 
@@ -139,13 +135,14 @@ export default class ScoreView extends Component {
         {this.state.displayWinner === true ? (
           <ModalViewWinner
             idMatch={idMatch}
-            idGame={idGame}  
+           // idGame={idGame}  
             player1={player1}
             player2={player2}
             score={[this.state.sumPlayer1, this.state.sumPlayer2]}
             winner={this.state.winner}
             show={this.state.displayWinner}
             onHide={() => this.handleOnHide()}
+            isNewMatch={isNewMatch}
           />
         ) : null}
         <View

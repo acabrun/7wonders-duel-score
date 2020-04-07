@@ -43,8 +43,8 @@ class ContinueView extends Component {
                         player1: game.player1NameMatch,
                         player2: game.player2NameMatch,
                         idMatch: game.idMatch,
-                        idGame: game.paramsMatch.idGame,
-                        isNewGame: false
+                       // idGame: game.paramsMatch[0].idGame,
+                        isNewMatch: false
                       });
                     }}
                   >

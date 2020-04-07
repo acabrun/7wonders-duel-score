@@ -68,7 +68,7 @@ class NewGameView extends Component {
                 this.props.navigation.navigate("Score", {
                   player1: this.state.p1,
                   player2: this.state.p2,
-                  isNewGame: true
+                  isNewMatch: true
                 });
               }
             }}
