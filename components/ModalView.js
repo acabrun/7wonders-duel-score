@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#e3cfad",
     padding: 10,
     margin: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    width: 250
   },
   textButton: {
     color: "black",

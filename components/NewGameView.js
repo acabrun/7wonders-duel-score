@@ -36,7 +36,7 @@ class NewGameView extends Component {
             alignItems: "center"
           }}
         >
-          <Text style={styles.baseText}>Who are playing ?</Text>
+          <Text style={styles.baseText}>Who is playing ?</Text>
           <TextInput
             style={this.state.textFilled ? styles.textInput : styles.textInputNotFilled }
             placeholder=" Player 1"
