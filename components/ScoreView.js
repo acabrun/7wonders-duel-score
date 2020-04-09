@@ -105,7 +105,28 @@ export default class ScoreView extends Component {
   };
 
   handleRestart = () => {
-    // Redirect to continueView
+    this.setState({
+      p1v1: "",
+      p1v2: "",
+      p1v3: "",
+      p1v4: "",
+      p1v5: "",
+      p1v6: "",
+      p1v7: "",
+      p1v8: "",
+      p2v1: "",
+      p2v2: "",
+      p2v3: "",
+      p2v4: "",
+      p2v5: "",
+      p2v6: "",
+      p2v7: "",
+      p2v8: "",
+      sumPlayer1: 0,
+      sumPlayer2: 0,
+      displayWinner: false,
+      winner: ""
+    });
   };
 
  

@@ -7,7 +7,6 @@ import StartView from "./components/StartView";
 import NewGameView from "./components/NewGameView";
 import ScoreView from "./components/ScoreView";
 import ContinueView from "./components/ContinueView";
-import NewScoreView from "./components/NewScoreView";
 import Store from "./store/ConfigureStore";
 
 export default class App extends Component {
@@ -38,7 +37,6 @@ export default class App extends Component {
             <Stack.Screen name="New" component={NewGameView} />
             <Stack.Screen name="Continue" component={ContinueView} />
             <Stack.Screen name="Score" component={ScoreView} />
-            <Stack.Screen name="NewScore" component={NewScoreView} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
